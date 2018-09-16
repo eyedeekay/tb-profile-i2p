@@ -1,28 +1,29 @@
 #!/usr/bin/env bash
 
-ls -lah "$HOME/.i2pb/" "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p" && sleep 20
-
-if [ -d "$HOME/.i2pb/profile.i2p" ]; then
-
+if [ ! -d "$HOME/.i2pb/profile.i2p" ]; then
+    echo 'copying profile.i2p to home folder'
     cp -rv /var/lib/tb-profile-i2p/profile.i2p \
-        /home/anon/.i2pb/profile.i2p
-
-    echo 'ln -sf /home/anon/.i2pb/profile.i2p /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p'
-
-    ln -sf /home/anon/.i2pb/profile.i2p \
-        /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p
-
+        "$HOME/.i2pb/profile.i2p"
 fi
 
-if [ ! -f /home/anon/.i2pb/Browser/start-i2p-browser ]; then
+echo 'linking profile folder to i2p browser.'
 
-    echo 'ln -sf /var/lib/tb-profile-i2p/start-i2p-browser.sh /home/anon/.i2pb/Browser/start-i2p-browser'
-    ln -sf /var/lib/tb-profile-i2p/start-i2p-browser /home/anon/.i2pb/Browser/start-i2p-browser
+ln -sf "$HOME/.i2pb/profile.i2p" \
+    "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p"
 
-    ls -lah /home/anon/.i2pb/Browser/start-i2p-browser
+ls -lah "$HOME/.i2pb/" "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p"
 
+if [ ! -f "$HOME/.i2pb/Browser/start-i2p-browser" ]; then
+    echo 'linking start-i2p-browser to the '
+    ln -sf /var/lib/tb-profile-i2p/start-i2p-browser "$HOME/.i2pb/Browser/start-i2p-browser"
+    ls -lah "$HOME/.i2pb/Browser/start-i2p-browser"
 fi
+
+ls -lah /home/anon/.i2pb/Browser/; false
 
 cd "$HOME/.i2pb/Browser/" || exit
 
-"$HOME/.i2pb/Browser/start-i2p-browser"
+cat "$HOME/.i2pb/Browser/start-i2p-browser"
+
+#"$HOME/.i2pb/Browser/start-i2p-browser"
+
