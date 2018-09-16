@@ -13,13 +13,8 @@ ln -sf "$HOME/.i2pb/profile.i2p" \
 
 ls -lah "$HOME/.i2pb/" "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p"
 
-if [ ! -f "$HOME/.i2pb/Browser/start-i2p-browser" ]; then
-    echo 'linking start-i2p-browser to the '
-    ln -sf /var/lib/tb-profile-i2p/start-i2p-browser "$HOME/.i2pb/Browser/start-i2p-browser"
-    ls -lah "$HOME/.i2pb/Browser/start-i2p-browser"
-fi
-
-ls -lah /home/anon/.i2pb/Browser/; false
+echo 'linking start-i2p-browser to the modified TBB folder'
+ln -sf /var/lib/tb-profile-i2p/start-i2p-browser "$HOME/.i2pb/Browser/start-i2p-browser"
 
 cd "$HOME/.i2pb/Browser/" || exit
 
