@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+cd "$HOME/.i2pb/Browser/" || exit
+
+ls -lah "$HOME/.i2pb/" "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p" && sleep 20
+
+./start-i2p-browser
