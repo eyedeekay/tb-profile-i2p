@@ -12,18 +12,7 @@ RUN cd /usr/src/tb-profile-i2p && make install
 
 USER anon
 
-RUN ls /home/anon/tor-browser_en-US/; false
-
 RUN cp -rv /home/anon/tor-browser_en-US/ /home/anon/.i2pb
-
-RUN cp -rv /var/lib/tb-profile-i2p/profile.i2p \
-    /home/anon/.i2pb/profile.i2p
-RUN ln -sf /home/anon/.i2pb/profile.i2p \
-    /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p
-
-RUN ln -sf /var/lib/tb-profile-i2p/start-i2p-browser.sh /home/anon/.i2pb/Browser/start-i2p-browser
-
-RUN ls /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p -lah
 
 CMD start-i2p-browser
 

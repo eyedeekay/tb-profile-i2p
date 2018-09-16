@@ -1,7 +1,28 @@
 #!/usr/bin/env bash
 
-cd "$HOME/.i2pb/Browser/" || exit
-
 ls -lah "$HOME/.i2pb/" "$HOME/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p" && sleep 20
 
-./start-i2p-browser
+if [ -d "$HOME/.i2pb/profile.i2p" ]; then
+
+    cp -rv /var/lib/tb-profile-i2p/profile.i2p \
+        /home/anon/.i2pb/profile.i2p
+
+    echo 'ln -sf /home/anon/.i2pb/profile.i2p /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p'
+
+    ln -sf /home/anon/.i2pb/profile.i2p \
+        /home/anon/.i2pb/Browser/TorBrowser/Data/Browser/profile.i2p
+
+fi
+
+if [ ! -f /home/anon/.i2pb/Browser/start-i2p-browser ]; then
+
+    echo 'ln -sf /var/lib/tb-profile-i2p/start-i2p-browser.sh /home/anon/.i2pb/Browser/start-i2p-browser'
+    ln -sf /var/lib/tb-profile-i2p/start-i2p-browser /home/anon/.i2pb/Browser/start-i2p-browser
+
+    ls -lah /home/anon/.i2pb/Browser/start-i2p-browser
+
+fi
+
+cd "$HOME/.i2pb/Browser/" || exit
+
+"$HOME/.i2pb/Browser/start-i2p-browser"
