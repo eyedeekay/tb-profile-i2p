@@ -1,0 +1,84 @@
+6c6
+< # Copyright 2017 The Tor Project.  See LICENSE for licensing information.
+---
+> # Copyright 2017 The Tor Project.  See LICENSE.tor for licensing information.
+8c8
+< complain_dialog_title="Tor Browser"
+---
+> complain_dialog_title="i2p Browser"
+18c18
+< # Second, make sure this script wasn't started as 'sh start-tor-browser' or
+---
+> # Second, make sure this script wasn't started as 'sh start-i2p-browser' or
+21c21
+<     echo "$complain_dialog_title should be started as './start-tor-browser'"
+---
+>     echo "$complain_dialog_title should be started as './start-i2p-browser'"
+99,103d98
+< if ! grep -q '^flags\s*:.* sse2' /proc/cpuinfo; then
+<         complain "Tor Browser requires a CPU with SSE2 support.  Exiting."
+<         exit 1
+< fi
+< 
+215c210
+< 			complain "start-tor-browser cannot be run using a symlink on this operating system."
+---
+> 			complain "start-i2p-browser cannot be run using a symlink on this operating system."
+241,244c236,240
+< cp start-tor-browser.desktop ../
+< sed -i -e "s,^Name=.*,Name=Tor Browser,g" ../start-tor-browser.desktop
+< sed -i -e "s,^Icon=.*,Icon=$PWD/browser/chrome/icons/default/default128.png,g" ../start-tor-browser.desktop
+< sed -i -e "s,^Exec=.*,Exec=sh -c '\"$PWD/start-tor-browser\" --detach || ([ !  -x \"$PWD/start-tor-browser\" ] \&\& \"\$(dirname \"\$*\")\"/Browser/start-tor-browser --detach)' dummy %k,g" ../start-tor-browser.desktop
+---
+> 
+> cp start-tor-browser.desktop ../start-i2p-browser.desktop
+> sed -i -e "s,^Name=.*,Name=i2p Browser,g" ../start-i2p-browser.desktop
+> sed -i -e "s,^Icon=.*,Icon=$PWD/browser/icons/mozicon128.png,g" ../start-i2p-browser.desktop
+> sed -i -e "s,^Exec=.*,Exec=sh -c '\"$PWD/start-i2p-browser\" --detach || ([ !  -x \"$PWD/start-i2p-browser\" ] \&\& \"\$(dirname \"\$*\")\"/Browser/start-i2p-browser --detach)' dummy %k,g" ../start-i2p-browser.desktop
+248c244
+< 	cp ../start-tor-browser.desktop "$HOME/.local/share/applications/"
+---
+> 	cp ../start-i2p-browser.desktop "$HOME/.local/share/applications/"
+255,256c251,252
+< 	if [ -e "$HOME/.local/share/applications/start-tor-browser.desktop" ]; then
+< 		rm -f "$HOME/.local/share/applications/start-tor-browser.desktop"
+---
+> 	if [ -e "$HOME/.local/share/applications/start-i2p-browser.desktop" ]; then
+> 		rm -f "$HOME/.local/share/applications/start-i2p-browser.desktop"
+275a272,273
+> LD_LIBRARY_PATH="${HOME}/TorBrowser/Tor/"
+> export LD_LIBRARY_PATH
+340c338
+< # Either set `TOR_CONTROL_PASSWD` before running ./start-tor-browser, or put
+---
+> # Either set `TOR_CONTROL_PASSWD` before running ./start-i2p-browser, or put
+356,357c354,355
+<     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "Tor Browser" \
+<         -profile TorBrowser/Data/Browser/profile.default --help 2>/dev/null
+---
+>     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "i2p Browser" \
+>         --profile "TorBrowser/Data/Browser/profile.i2p" --help 2>/dev/null
+360,361c358,359
+<     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "Tor Browser" \
+<        -profile TorBrowser/Data/Browser/profile.default "${@}" > "$logfile" 2>&1 </dev/null &
+---
+>     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "i2p Browser" \
+>        --profile "TorBrowser/Data/Browser/profile.i2p" "${@}" > "$logfile" 2>&1 </dev/null &
+364,365c362,363
+<     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "Tor Browser" \
+<         -profile TorBrowser/Data/Browser/profile.default "${@}" 2>&1 </dev/null | \
+---
+>     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "i2p Browser" \
+>         --profile "TorBrowser/Data/Browser/profile.i2p" "${@}" 2>&1 </dev/null | \
+368,369c366,367
+<     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "Tor Browser" \
+<         -profile TorBrowser/Data/Browser/profile.default "${@}" < /dev/null
+---
+>     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "i2p Browser" \
+>         --profile "TorBrowser/Data/Browser/profile.i2p" "${@}" < /dev/null
+371,372c369,370
+<     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "Tor Browser" \
+<         -profile TorBrowser/Data/Browser/profile.default "${@}" > "$logfile" 2>&1 </dev/null
+---
+>     TOR_CONTROL_PASSWD=${TOR_CONTROL_PASSWD} ./firefox --class "i2p Browser" \
+>         --profile "TorBrowser/Data/Browser/profile.i2p" "${@}" > "$logfile" 2>&1 </dev/null
